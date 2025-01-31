@@ -22,9 +22,11 @@ cd graphql-expo-app
 ### 2. Run command
 docker-compose up --build
 
-This command will:
-
-Start MongoDB as a Docker container
+#### This command will:
+- Start MongoDB as a Docker container
+- Start Account and Device Microservices
+- Start Gateway service that will be as a Federated GraphQL service
+- Start Expo app to interact with Gateway service
 
 ### Start the Federated GraphQL API server
 - [GraphQL Server](http://localhost:4000/)
