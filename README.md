@@ -16,7 +16,7 @@ Before running the project, ensure you have the following installed:
 
 ### 1. Clone the Repository
 
-git clone <repository-url>
+git clone https://github.com/shahzaibimran94/graphql-expo-app.git
 cd graphql-expo-app
 
 ### 2. Run command
