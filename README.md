@@ -26,13 +26,13 @@ This command will:
 
 Start MongoDB as a Docker container
 
-# Start the Federated GraphQL API server
+### Start the Federated GraphQL API server
 - [GraphQL Server](http://localhost:4000/)
 
-# Start Expo App
+### Start Expo App
 - [Expo App](http://localhost:8081/) Can be accessible using browser
 
-## Expo Features
+### Expo Features
 - Create an Account
 - Add device for an Account
 - View account devices
