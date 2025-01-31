@@ -1,0 +1,80 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:latest
+    restart: always
+    ports:
+      - "27017:27017"
+    networks:
+      - gql-network
+    volumes:
+      - mongodb_data:/data/db
+    logging: 
+      driver: "none"
+
+  account-module:
+    build:
+      dockerfile: Dockerfile
+      context: ./graphql-federation/account-module
+    ports:
+      - "4001:4001"
+    environment: 
+      MONGODB_URI: mongodb://mongodb:27017/accountdb
+      DEVICE_GRAPHQL_URL: http://device-module:4002/graphql
+    depends_on: 
+      - mongodb
+    networks:
+      - gql-network
+    volumes:
+      - ./graphql-federation/account-module:/app
+      - /app/node_modules
+
+  device-module:
+    build:
+      dockerfile: Dockerfile
+      context: ./graphql-federation/device-module
+    ports:
+      - "4002:4002"
+    environment: 
+      MONGODB_URI: mongodb://mongodb:27017/devicedb
+      ACCOUNT_GRAPHQL_URL: http://account-module:4001/graphql
+    depends_on: 
+      - mongodb
+    networks:
+      - gql-network
+    volumes:
+      - ./graphql-federation/device-module:/app
+      - /app/node_modules
+
+  gateway:
+    restart: always
+    build: ./graphql-federation/gateway
+    ports:
+      - "4000:4000"
+    environment: 
+      ACCOUNT_SERVICE_URL: http://account-module:4001
+      DEVICE_SERVICE_URL: http://device-module:4002
+    depends_on:
+      - mongodb
+      - account-module
+      - device-module
+    networks:
+      - gql-network
+    volumes:
+      - ./graphql-federation/gateway:/app
+      - /app/node_modules
+
+  expo-app:
+    build: ./expo-app
+    ports:
+      - "8081:8081"
+    depends_on: 
+      - gateway
+
+volumes: 
+  mongodb_data:
+
+networks:
+  gql-network:
+    driver: bridge
