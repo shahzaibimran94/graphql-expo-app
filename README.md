@@ -15,21 +15,22 @@ Before running the project, ensure you have the following installed:
 ## Getting Started
 
 ### 1. Clone the Repository
-```sh
+
 git clone <repository-url>
 cd graphql-expo-app
 
+### 2. Run command
 docker-compose up --build
 
 This command will:
 
 Start MongoDB as a Docker container
 
-Start the Federated GraphQL API server
-URL: http://localhost:4000
+# Start the Federated GraphQL API server
+- [GraphQL Server](http://localhost:4000/)
 
-Start Expo App
-URL: http://localhost:8081
+# Start Expo App
+- [Expo App](http://localhost:8081/) Can be accessible using browser
 
 ## Expo Features
 - Create an Account
