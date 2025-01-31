@@ -15,9 +15,8 @@ Before running the project, ensure you have the following installed:
 ## Getting Started
 
 ### 1. Clone the Repository
-
-git clone https://github.com/shahzaibimran94/graphql-expo-app.git
-cd graphql-expo-app
+- git clone https://github.com/shahzaibimran94/graphql-expo-app.git
+- cd graphql-expo-app
 
 ### 2. Run command
 docker-compose up --build
